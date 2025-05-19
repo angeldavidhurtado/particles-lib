@@ -1,0 +1,466 @@
+/*
+	el color de fondo va cambiando
+
+	tamaño h1 daña nav
+
+	ancho boton de cambiar página debe ser siempre igual así hallan
+	1, 2 ... opciones, para que siempre se pueda dar click en la misma
+	coordenada y siempre esté el botón allí,
+	si no, cuando hay dos btn y pasa a haber dos queda el espacio vacio,
+	y al dar click el click queda en el aire y uno es ¿qué pasó? ah, es
+	que ya no hay btn ahí
+*/
+
+:root {
+	--width-article: calc(100% - 160px);
+	--background-user: violet;
+	--shadow: 0 0 50px #fff;
+	--article-background:#eee7ea ; /* var(--colorC) */
+	--disappear-article: linear-gradient(#eee7ea, transparent); /* linear-gradient(#F6F0ED, #f6f0ed1e) */
+	--background-gradient: radial-gradient(
+		ellipse at center,
+		#3e5e8e62 5%,
+		#25385598 45%,
+		#192639
+	);
+}
+
+body {
+	width: 100%;
+	overflow-x: hidden;
+}
+
+
+
+
+.publication {
+	margin-top: -45px;
+	margin-bottom: 100px;
+	position: relative;
+}
+
+.publication::after {
+	content: "";
+	display: block;
+	width: 100%;
+	height: 80px;
+	position: absolute;
+	bottom: 0;
+	background: linear-gradient(
+		transparent,
+		var(--colorA)
+	);
+	/*
+	background: linear-gradient(
+		transparent,
+		#2538556e,
+		var(--colorA)
+	);
+	*/
+}
+
+
+
+
+/* --- --- --- partciles --- --- --- */
+
+/*
+https://kinsta.com/es/blog/optimizar-css/
+https://uniwebsidad.com/libros/referencia-css2/clear?from=librosweb
+https://blog.hostdime.com.co/optimizar-animaciones-en-css-con-la-propiedad-will-change/
+*/
+
+.publication .left_particles,
+.publication .right_particles {
+	position: sticky;
+	float: left;
+	top: 44px;
+	z-index: 3;
+	transition: height 9s ease-in-out;
+}
+.publication .right_particles { float: right; }
+
+.publication .down_particles {
+	max-width: 900px;
+	width: 100%;
+	height: 105px;
+	position: absolute;
+	bottom: 0;
+	z-index: 1;
+	margin-left: calc(50% - 450px);
+}
+
+/* .particle */
+.publication .left_particles > *,
+.publication .right_particles > *,
+.publication .down_particles > * {
+	position: absolute;
+	border-radius: 50%;
+	background-color: #8EA7CD; /* #6386BB */
+	opacity: 0;
+	filter: blur(6px);
+	font-size: 1px;
+}
+
+@keyframes right100 {
+	0% { opacity: 0; }
+	20%, 80% { opacity: .7; }
+	to {
+		transform: translate(100px, -200px);
+		opacity: 0;
+	}
+}
+
+@keyframes right30 {
+	0% { opacity: 0; }
+	20%, 80% { opacity: .7; }
+	to {
+		transform: translate(30px, -200px);
+		opacity: 0;
+	}
+}
+
+@keyframes left30 {
+	0% { opacity: 0; }
+	20%, 80% { opacity: .7; }
+	to {
+		transform: translate(-30px, -200px);
+		opacity: 0;
+	}
+}
+
+@keyframes left100 {
+	0% { opacity: 0; }
+	20%, 80% { opacity: .7; }
+	to {
+		transform: translate(-100px, -200px);
+		opacity: 0;
+	}
+}
+
+
+
+
+/* --- --- --- higher_particles --- --- --- */
+
+.higher_particles {
+	position: sticky;
+	top: 0;
+	z-index: 2;
+	margin-bottom: 225px;
+	/* celular -> margin-bottom: 180px; */
+}
+
+.higher_particles .top_edge_container {
+	background-color: var(--background-user);
+	overflow: hidden;
+	/* margen */
+	padding-top: 104px;
+	height: 156px;
+	/* margen */
+	position: relative;
+}
+
+.higher_particles .background_gradient_a {
+	width: 100%;
+	height: 100vh;
+	/*
+	background: radial-gradient(red, green);
+	*/
+	background: var(--background-gradient);
+	position: absolute;
+	z-index: 0;
+	top: 0;
+}
+
+
+
+.higher_particles .controls_group { height: 0; }
+
+.higher_particles .top_edge_container::after {
+	content: "";
+	display: block;
+	width: var(--width-article);
+	max-width: 940px;
+	height: 100px;
+	margin: auto;
+	border-radius: 7px 7px 0 0;
+	background-color: var(--article-background);
+	box-shadow: var(--shadow);
+	position: relative;
+	z-index: 1;
+}
+
+.higher_particles .gradient_container { height: 0; }
+
+.higher_particles .gradient_container::before {
+	content: "";
+	display: block;
+	width: var(--width-article);
+	max-width: 940px;
+	height: 30px;
+	margin: auto;
+	background: var(--disappear-article);
+}
+
+
+
+
+/* --- --- --- lower_particles --- --- --- */
+
+.lower_particles {
+	margin-top: -260px;
+	position: relative;
+	padding-bottom: 105px;
+	background-color: var(--background-user);
+}
+
+.lower_particles .background_gradient_b {
+	width: 100%;
+	position: absolute;
+	top: -121px;
+	bottom: 0;
+	background: var(--background-gradient);
+}
+
+.lower_particles article {
+	width: var(--width-article);
+	max-width: 940px;
+	margin: -235px auto 0 auto;
+	background-color: var(--article-background);
+	box-shadow: var(--shadow);
+	padding: 50px 60px 35px 60px;
+	border-radius: 0 0 7px 7px;
+	position: relative;
+	z-index: 1;
+}
+
+
+
+
+/* --- --- --- Animation disappear --- --- --- */
+
+/*
+https://www.mundodeportivo.com/uncomo/relaciones/articulo/como-ser-sensual-en-la-cama-con-un-hombre-48237.html
+https://elpais.com/cultura/2015/04/09/actualidad/1428598237_054461.html
+*/
+
+@keyframes disappear {
+	50% {transform: scale(1);}
+	to {
+		opacity: 0;
+		transform: scale(.965);
+	}
+}
+
+
+
+
+/* text */
+
+.lower_particles h1,
+.lower_particles h2,
+.lower_particles h3 {
+	color: var(--colorB);
+	border-bottom: 1px solid var(--colorB);
+}
+.lower_particles h1 {
+	font-size: 28px;
+	padding: 0 calc((100% - 650px) / 2) 25px calc((100% - 650px) / 2);
+	margin-bottom: 25px;
+	text-align: center;
+	overflow-wrap: break-word;
+}
+.lower_particles h2 { font-size: 27px; padding: 30px 0; }
+.lower_particles h3 { font-size: 20px; padding: 20px 0; }
+
+.lower_particles p {
+	margin: auto;
+	max-width: 750px;
+	font-size: 16px;
+	line-height: 31px;
+	padding-bottom: 25px;
+}
+
+
+
+
+/* --- --- --- controls_change_page --- --- --- */
+
+.controls_group {
+	position: relative;
+	width: fit-content;
+	margin: auto;
+	z-index: 2;
+	top: -18px;
+}
+
+.controls_group .buttons {
+	background-color: var(--colorB);
+	border-radius: 7px;
+	box-shadow: 0 0 100px white;
+}
+
+.appear-buttons {
+	animation: animation-appear-buttons .2s 3 linear;
+	/*
+	animation: animation-appear-buttons 3s ease forwards;
+	*/
+}
+@keyframes animation-appear-buttons {
+	25% {transform: rotate(-8deg);}
+	75% {transform: rotate(8deg);}
+	100% {transform: rotate(0);}
+}
+/*
+@keyframes animation-appear-buttons {
+	0% {
+		transform:
+			scale(1.2)
+			rotate(6deg)
+			translate(-3px, -3px)
+		;
+	}
+	40%, to { opacity: 1; }
+}
+*/
+
+/*
+@keyframes appear-buttons {
+	25% {transform: rotate(-8deg);}
+	75% {transform: rotate(8deg);}
+	100% {transform: rotate(0);}
+}
+*/
+
+.controls_group button {
+	transition: filter .5s ease;
+	border: 0;
+	background-color: var(--colorB);
+	height: 33px;
+	width: 33px;
+	cursor: pointer;
+	outline: none;
+}
+
+.controls_group #btn_previous_page {
+	border-radius: 7px 0 0 7px;
+}
+
+.controls_group #btn_next_page {
+	border-radius: 0 7px 7px 0;
+}
+
+.controls_group img {
+	vertical-align: top;
+	height: 11px;
+	margin-top: 3px;
+}
+
+
+
+
+@media screen and (max-width: 1100px) {
+	:root {
+		--shadow: 0 0 30px #fff;
+	}
+
+	.publication .down_particles {
+		width: calc(100% - 200px);
+		margin-left: 100px;
+	}
+
+	.lower_particles article {
+		padding: 50px 40px 35px 40px;
+	}
+
+	.lower_particles h1 {
+		font-size: 26px;
+		padding: 0 0 25px 0;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	:root {
+		--width-article: calc(100% - 140px);
+	}
+
+	.lower_particles p {
+		font-size: 17px;
+		line-height: 33px;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	:root {
+		--width-article: calc(100% - 100px);
+	}
+}
+
+@media screen and (max-width: 500px) {
+	:root {
+		--width-article: calc(100% - 80px);
+	}
+
+	.lower_particles article {
+		padding: 50px 30px 35px 30px;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	:root {
+		--width-article: calc(100% - 60px);
+	}
+
+	.lower_particles h1 {
+		font-size: 24px;
+	}
+
+	.publication .left_particles > *,
+	.publication .right_particles > *,
+	.publication .down_particles > * {
+		font-size: .7px;
+	}
+
+	.higher_particles .top_edge_container {
+		padding-top: 97px;
+		height: calc(97px + 45px);
+	}
+
+	.lower_particles .background_gradient_b {
+		top: -107px;
+	}
+}
+
+@media screen and (max-width: 380px) {
+	:root {
+		--width-article: calc(100% - 40px);
+		--shadow: 0 0 25px #fff;
+	}
+
+	.lower_particles article {
+		padding: 50px 25px 35px 25px;
+	}	
+
+	.publication .left_particles > *,
+	.publication .right_particles > *,
+	.publication .down_particles > * {
+		font-size: .6px; /* change particle-size */
+	}
+}
+
+
+
+
+
+.publication .left_particles,
+.publication .right_particles,
+.publication .down_particles {
+	width: 200px;
+	height: 200px;
+	background: darkblue;
+}
+
+body {
+	padding-top: 300px;
+}
