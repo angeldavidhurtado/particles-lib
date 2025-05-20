@@ -4,7 +4,6 @@
 .right_particles,
 .down_particles {
 	position: relative;
-	/* default */
 	width: 200px;
 	height: 200px;
 	background: darkblue;
