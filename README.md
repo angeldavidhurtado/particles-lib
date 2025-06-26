@@ -1,7 +1,7 @@
 <br>
 
 <h1 align="center">Particles.js</h1>
-<p alignt="center">Librería de partículas animadas en JavaScript</p>
+<p align="center">Librería de partículas animadas en JavaScript</p>
 
 <br>
 
