@@ -1,3 +1,5 @@
+<br>
+
 <h1 align="center">Particles.js</h1>
 <p alignt="center">Librería de partículas animadas en JavaScript</p>
 
@@ -29,3 +31,5 @@ Ideal para fondos decorativos, headers llamativos o elementos interactivos con b
 
 <script src="Particles.js"></script>
 ```
+
+<br>
